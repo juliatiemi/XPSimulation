@@ -14,24 +14,33 @@ margin: 30px auto 50px;
 padding-bottom: 20px;
 }
 
+h2{
+    color: rgb(65, 65, 65);
+    text-align: center;
+    font-family: Arial;
+    font-weight: normal;
+    margin: 10px auto 30px;
+    }
+
 .inner-screen{
-width: 800px;
-height: 340px;
+width: 600px;
+height: 800px;
 background: #a00000;
 margin: 0px auto;
 padding-top: 80px;
 }
 
 .form{
-width: 400px;
-height: 230px;
-background: #edeff1;
-margin: 0px auto;
-padding-top: 20px;
-border-radius: 10px;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
-}
+    width: 400px;
+    height: fit-content;
+    background: #edeff1;
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    }
 
 input[type="text"]{
 display: block;
