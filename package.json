@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "cd front && npm run start",
-        "build": "cd front && ng serve",
+        "build": "cd front && ng serve --open",
         "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript && ng update @angular/cli --migrate-only --from=7.3.8"
     },
     "engines": {
