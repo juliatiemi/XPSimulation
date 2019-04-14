@@ -1,0 +1,17 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "description": "Test App",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "XPSimulation",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
