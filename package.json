@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "cd front && npm run start && cd ../",
-        "build": "pushd front && ng serve && popd"
+        "start": "cd front && npm run start",
+        "build": "cd front && ng serve"
     }
 }
