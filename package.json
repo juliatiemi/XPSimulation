@@ -6,7 +6,7 @@
         "start": "cd front && npm run start",
         "build": "cd front && ng serve",
         "postinstall": "ng build --prod",
-        "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
+        "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript && ng update @angular/cli --migrate-only --from=7.3.8"
     },
     "engines": {
         "node": "10.15.3",
