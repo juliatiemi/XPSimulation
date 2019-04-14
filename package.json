@@ -8,6 +8,10 @@
         "postinstall": "ng build --prod",
         "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
     },
+    "engines": {
+        "node": "10.15.3",
+        "npm": "6.4.1"
+      },
     "dependencies": {
         "@angular-devkit/build-angular": "~0.13.0",
         "@angular/cli": "~7.3.8",
