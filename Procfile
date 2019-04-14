@@ -1,1 +1,1 @@
-web: node molotov/app.js
+web: cd front && ng serve
