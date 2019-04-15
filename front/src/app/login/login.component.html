@@ -7,10 +7,12 @@
       <h1>Molotov</h1>
       <div class="form">
         <h2>Login</h2>
-        <input type="text" placeholder="Username" />
-        <input type="text" placeholder="Password" />
-        <input type="submit" value="Login" />
-        <a href="">Register</a>
+        <form [formGroup] = "loginForm">
+        <input formControlName="username" type="text" id="username" placeholder="Username" />
+        <input formControlName="password" type="password" id="password" placeholder="Password" />
+        <input type="submit" value="Login" (click)="login()"/>
+        </form>
+        <a href="/register">Register</a>
       </div> 
     </div>
   </body>

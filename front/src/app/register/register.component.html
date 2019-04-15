@@ -7,11 +7,13 @@
       <h1>Molotov</h1>
       <div class="form">
         <h2>Sing Up</h2>
-        <input type="text" placeholder="Username" />
-        <input type="text" placeholder="Password" />
-        <input type="text" placeholder="Confirm Password" />
-        <input type="submit" value="Register" />
-        <a href="">Already have an account? Login</a>
+        <form [formGroup] = "registerForm">
+        <input formControlName="username" type="text" id="username" placeholder="Username" />
+        <input formControlName="password" type="password" id="ppassword" placeholder="Password" />
+        <input formControlName="passwordConfirm"type="password" id="cpass" placeholder="Confirm Password" />
+        <input type="submit" value="Register" (click)="register()"/>
+        </form>
+        <a href="/login">Already have an account? Login</a>
       </div> 
     </div>
   </body>
