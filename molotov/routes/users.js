@@ -15,7 +15,8 @@ router.post('/register', function(req,res, next){
 async function addUserToDB(req, res){
   var user = new User({
     _id: req.body.username,
-    password: User.hashPassword(req.body.password)
+    password: User.hashPassword(req.body.password),
+    about: 'Hello World!'
   });
   try{
     doc = await user.save();

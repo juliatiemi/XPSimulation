@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component'
 const routes: Routes = [
   { path: 'ask', component: AskComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'me', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'questions', component: QuestionListComponent },
   { path: 'register', component: RegisterComponent }

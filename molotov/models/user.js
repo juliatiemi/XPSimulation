@@ -6,8 +6,8 @@ var schema = new Schema({
     _id: {type:String, require:true},
     password: {type:String, require:true},
     about: {type:String, require:false},
-    questions: {type:Array, require:false},
-    answers: {type:Array, require:false},
+    questions: [{type:Schema.Types.ObjectId, ref:'Question', require:false}],
+    answers: [{type:Schema.Types.ObjectId, ref:'Answer', require:false}],
 });
 
 schema.statics.hashPassword = function hashPassword(password){
