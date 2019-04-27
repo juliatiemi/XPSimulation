@@ -1,0 +1,1 @@
+web: cd front && ng serve --open
