@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var fs = require('fs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cors = require('cors');
@@ -19,8 +19,13 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://admin:12345@xpserver-uwud6.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
 
+fs.readdirSync(__dirname + '/models').forEach(function(filemane){
+  if (~__filename.indexOf('.js')) require(__dirname + '/models/' + filemane)
+});
+
 var passport = require('passport');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 app.use(session({
   name: 'myname.sid',
@@ -31,7 +36,8 @@ app.use(session({
     maxAge: 36000000,
     httpOnly: false,
     secure: false
-  }
+  },
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 require('./passport-config');
 app.use(passport.initialize());

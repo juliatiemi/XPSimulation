@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     text: {type:String, require:true},
     user: {type:String, ref:'User', require:true},
-    answers: [{type:Schema.Types.ObjectId, ref:'Answer', require:false}],
+    question: {type: Schema.ObjectId, ref: 'Question', require:true}
 });
 
-module.exports = mongoose.model('Question', schema)
+module.exports = mongoose.model('Answer', schema)
