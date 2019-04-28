@@ -39,4 +39,12 @@ export class UserService {
     });
   }
 
+  remove(id:String){
+    return this._http.delete('http://127.0.0.1:3000/users/' + id, {
+      observe: 'body',
+      withCredentials: true,
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
 }

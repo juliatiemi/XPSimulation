@@ -35,4 +35,21 @@ export class ProfileComponent implements OnInit {
     )
   }
 
+  remove(){
+    this._user.remove(this.username)
+    .subscribe(
+      data=>{console.log(data); this._router.navigate(['/login'])},
+      error=>console.error(error)
+    )
+    this._router.navigate(['/login'])
+  }
+
+  edit(){
+    this._router.navigate(['/register'])
+  }
+
+  change_pass(){
+    this._router.navigate(['/register'])
+  }
+
 }

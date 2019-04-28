@@ -4,9 +4,12 @@
   </head>
   <body>
     <button type="button" (click)="logout()">logout</button>
-    <div class="inner-screen">
+    <button type="button" (click)="edit()">edit desciption</button>
+    <button type="button" (click)="change_pass()">change Password</button>
+    <button type="button" (click)="remove()">remove user</button>
+    <div>
       <h1>{{username}}</h1>
-      <h3>{{about}}</h3>
+      <h5>{{about}}</h5>
     </div>
   </body>
 </html>
