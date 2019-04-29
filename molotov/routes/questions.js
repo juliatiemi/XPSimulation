@@ -2,13 +2,46 @@ var express = require('express');
 var router = express.Router();
 var Question = require('../models/questions');
 
+
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
 
+//findall
+router.get('/author', function(req, res, next) {
+  var id = req.params.authorID;
+  Question.find()
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+//find by authorID
+router.get('/author/:authorID', function(req, res, next) {
+   var id = req.params.authorID;
+   Question.find({ author: authorID })
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error:err })
+    })
+});
+
+
+
 router.post('/ask', function(req,res, next){
-  addQustionToDB(req, res);
+  addQuestionToDB(req, res);
 });
 
 async function addQuestionToDB(req, res){

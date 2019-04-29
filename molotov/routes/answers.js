@@ -7,6 +7,57 @@ var Answer = require('../models/answers');
 //   res.send('respond with a resource');
 // });
 
+//findall
+router.get('/answers', function(req, res, next) {
+  var id = req.params.questionID;
+  Answer.find()
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+
+
+
+//find by question
+router.get('/answers/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  Answer.find({ question: questionID })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+//find by authorID
+router.get('/author/:authorID', function(req, res, next) {
+  var id = req.params.authorID;
+  Answer.find({ author: authorID })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+
+
+
 router.post('/answer', function(req,res, next){
   addAnswerToDB(req, res);
 });
