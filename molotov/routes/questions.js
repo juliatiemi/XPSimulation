@@ -36,6 +36,8 @@ router.get('/user/:userID', function(req, res, next) {
       console.log(err);
       res.status(500).json({ error:err })
     });
+router.post('/ask', function(req,res, next){
+  addQuestionToDB(req, res);
 });
 
 //find by questionid
