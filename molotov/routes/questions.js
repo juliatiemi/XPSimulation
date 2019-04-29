@@ -38,6 +38,22 @@ router.get('/user/:userID', function(req, res, next) {
     });
 });
 
+//find by questionid
+router.get('/questions/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  console.log(id);
+  Question.find({ _id: questionID })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   });
+});
+
 //add new question
 router.post('/ask', (req, res, next) => {
   var question = new Question({
@@ -58,7 +74,35 @@ router.post('/ask', (req, res, next) => {
   })
 });
 
+//delete by questionid
+router.delete('/questions/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  console.log(id);
+  Question.remove({ _id: id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   });
+});
 
-
+//delete by author ID
+router.delete('/user/:userID', function(req, res, next) {
+  var id = req.params.userID;
+  Question.remove({ user: id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   });
+});
 
 module.exports = router;
