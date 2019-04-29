@@ -7,21 +7,103 @@ var Answer = require('../models/answers');
 //   res.send('respond with a resource');
 // });
 
-router.post('/answer', function(req,res, next){
-  addAnswerToDB(req, res);
+//findall
+router.get('/answers', function(req, res, next) {
+  Answer.find()
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
 });
 
-async function addAnswerToDB(req, res){
+
+
+//find by question
+router.get('/answers/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  Answer.find({ question: id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+//find by userID
+router.get('/user/:userID', function(req, res, next) {
+  var id = req.params.userID;
+  Answer.find({ user : id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+
+//add new question
+router.post('/ask', (req, res, next) => {
   var answer = new Answer({
-    text: req.body.new_answer
+    text: req.body.text,
+    user: req.body.user,
+    question: req.body.question
   });
-  try{
-    doc = await answer.save();
-    return res.status(201).json(doc);
-  }
-  catch(err){
-    return res.status(501).json(err);
-  }
-}
+ answer.save()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err =>{
+    console.log(err);
+  });
+  res.status(201).json({
+    message: "Successful creation",
+    createdAnswer: answer
+  })
+});
+
+//delete by question
+router.delete('/answers/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  Answer.remove({ question: id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
+
+//find by userID
+router.delete('/user/:userID', function(req, res, next) {
+  var id = req.params.userID;
+  Answer.remove({ user : id })
+   .exec()
+   .then(doc => {
+     console.log(doc);
+     res.status(200).json(doc);
+   })
+   .catch(err => {
+     console.log(err);
+     res.status(500).json({ error:err })
+   })
+});
+
 
 module.exports = router;
