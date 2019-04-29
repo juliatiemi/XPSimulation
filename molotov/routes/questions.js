@@ -9,8 +9,7 @@ var Question = require('../models/questions');
 // });
 
 //findall
-router.get('/author', function(req, res, next) {
-  var id = req.params.authorID;
+router.get('/user', function(req, res, next) {
   Question.find()
    .exec()
    .then(doc => {
@@ -24,9 +23,10 @@ router.get('/author', function(req, res, next) {
 });
 
 //find by authorID
-router.get('/author/:authorID', function(req, res, next) {
-   var id = req.params.authorID;
-   Question.find({ author: authorID })
+router.get('/user/:userID', function(req, res, next) {
+   var id = req.params.userID;
+   console.log(id);
+   Question.find({ user: id })
     .exec()
     .then(doc => {
       console.log(doc);
@@ -35,26 +35,30 @@ router.get('/author/:authorID', function(req, res, next) {
     .catch(err => {
       console.log(err);
       res.status(500).json({ error:err })
-    })
+    });
 });
 
-
-
-router.post('/ask', function(req,res, next){
-  addQuestionToDB(req, res);
-});
-
-async function addQuestionToDB(req, res){
+//add new question
+router.post('/ask', (req, res, next) => {
   var question = new Question({
-    text: req.body.question
+    text: req.body.text,
+    user: req.body.user,
+    answers: req.body.answers
   });
-  try{
-    doc = await question.save();
-    return res.status(201).json(doc);
-  }
-  catch(err){
-    return res.status(501).json(err);
-  }
-}
+ question.save()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err =>{
+    console.log(err);
+  });
+  res.status(201).json({
+    message: "Successful creation",
+    createdQuestion: question
+  })
+});
+
+
+
 
 module.exports = router;

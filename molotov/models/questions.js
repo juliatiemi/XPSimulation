@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-    content: {type:String, require:true},
-    author: {type:String, ref:'users', require:true},
+    text: {type:String, require:true},
+    user: {type:String, ref:'users', require:true},
     answers: [{type:Schema.Types.ObjectId, ref:'answers', require:false}],
 });
 
