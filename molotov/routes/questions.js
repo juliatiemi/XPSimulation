@@ -8,7 +8,7 @@ var Question = require('../models/questions');
 // });
 
 router.post('/ask', function(req,res, next){
-  addQustionToDB(req, res);
+  addQuestionToDB(req, res);
 });
 
 async function addQuestionToDB(req, res){
