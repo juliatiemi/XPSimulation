@@ -3,13 +3,22 @@
   <head>
   </head>
   <body>
-    <button type="button" (click)="logout()">logout</button>
-    <button type="button" (click)="edit()">edit desciption</button>
-    <button type="button" (click)="change_pass()">change Password</button>
-    <button type="button" (click)="remove()">remove user</button>
-    <div>
-      <h1>{{username}}</h1>
-      <h5>{{about}}</h5>
+    <div class="inner-screen">
+      <div>
+        <h1>{{username}}</h1>
+        <br>
+        <h5>{{about}}</h5>
+      </div>
+      <div>
+      <table style="width:100%">
+        <tr>
+          <td><button type="button" (click)="logout()">logout</button></td>
+          <td><button type="button" (click)="edit()">edit desciption</button></td> 
+          <td><button type="button" (click)="change_pass()">change Password</button></td>
+          <td><button type="button" (click)="remove()">remove user</button><td>
+        </tr>
+      </table>
+      </div>
     </div>
   </body>
 </html>

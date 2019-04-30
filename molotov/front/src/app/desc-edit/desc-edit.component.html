@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="inner-screen">
+      <div class="form">
+        <h2>Edit Description</h2>
+        <form [formGroup] = "registerForm">
+        <textarea formControlName="newDesc" rows="4" cols="40" class=textboxa id="newDesc" >{{about}}</textarea>
+        <input type="submit" value="Save" (click)="submit()"/>
+        </form>
+        <a href="/profile">cancel</a>
+      </div> 
+    </div>
+  </body>
+</html>

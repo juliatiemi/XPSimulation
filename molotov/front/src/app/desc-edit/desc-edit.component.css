@@ -10,15 +10,16 @@ color: #fff;
 text-align: center;
 font-family: Arial;
 font-weight: normal;
-margin: 30px auto ;
+margin: 30px auto 50px;
+padding-bottom: 20px;
 }
 
-h5{
-    color: rgb(197, 197, 197);
+h2{
+    color: rgb(65, 65, 65);
     text-align: center;
     font-family: Arial;
     font-weight: normal;
-    margin: 0px auto 50px;
+    margin: 10px auto 30px;
     }
 
 .inner-screen{
@@ -40,10 +41,20 @@ padding-top: 80px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     }
-
-table{
-    margin:auto;
-    width: 80% !important;
+.textboxa{
+    display: block;
+width: 309px;
+height: 100px;
+margin: 15px auto;
+background: #fff;
+border: 0px;
+padding: 5px;
+font-size: 16px;
+border: 2px solid #fff;
+transition: all 0.3s ease;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
 }
 
 input[type="text"]{

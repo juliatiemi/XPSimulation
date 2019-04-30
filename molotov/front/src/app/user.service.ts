@@ -47,4 +47,18 @@ export class UserService {
     });
   }
 
+  edit(body:any, id:String){
+    return this._http.patch('http://127.0.0.1:3000/users/desc/' + id, body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
+  change_pass(body:any, id:String){
+    return this._http.patch('http://127.0.0.1:3000/users/pass/' + id, body, {
+      observe: 'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
 }

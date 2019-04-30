@@ -45,11 +45,11 @@ export class ProfileComponent implements OnInit {
   }
 
   edit(){
-    this._router.navigate(['/register'])
+    this._router.navigate(['/desc'])
   }
 
   change_pass(){
-    this._router.navigate(['/register'])
+    this._router.navigate(['/pass'])
   }
 
 }

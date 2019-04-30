@@ -60,7 +60,37 @@ router.delete('/:userId', isValidUser, (req, res, next) => {
         error: err
       });
     });
+});
 
+router.patch('/desc/:userId', (req, res, next) => {
+  const id = req.params.userId;
+  User.update({_id: id}, {$set: {about: req.body.newDesc}})
+    .exec()
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        error: err
+      });
+    });
+});
+
+router.patch('/pass/:userId', (req, res, next) => {
+  const id = req.params.userId;
+  var pass = User.hashPassword(req.body.newPass);
+  User.update({_id: id}, {$set: {password: pass}})
+    .exec()
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        error: err
+      });
+    });
 });
 
 
