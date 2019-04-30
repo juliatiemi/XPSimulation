@@ -12,6 +12,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './user.service'
 import { HttpClientModule } from '@angular/common/http';
+import { DescEditComponent } from './desc-edit/desc-edit.component';
+import { PassChangeComponent } from './pass-change/pass-change.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     QuestionListComponent,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DescEditComponent,
+    PassChangeComponent
   ],
   imports: [
     BrowserModule,
