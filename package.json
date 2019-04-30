@@ -1,0 +1,20 @@
+{
+  "name": "xpsimulation",
+  "version": "1.0.0",
+  "description": "Software Engineer class assignment where a group of 5 students were challenged to simulate a software development team operating under Extreme Programming principles, values and practices. We are using [Trello](https://trello.com/b/6JjKJzwO/molotov) as a project management tool.",
+  "main": "index.js",
+  "scripts": {
+    "start": "molotov/bin/www & cd molotov/front/ ; ng serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groupinho/XPSimulation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/groupinho/XPSimulation/issues"
+  },
+  "homepage": "https://github.com/groupinho/XPSimulation#readme"
+}
