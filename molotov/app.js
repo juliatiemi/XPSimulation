@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 app.use(cors({
-  origin:['http://localhost:4200', 'http://127.0.0.1:4200'],
+  origin:['http://localhost:4200', 'http://127.0.0.1:4200', 'https://molotovy-pr-8.herokuapp.com'],
   credentials:true
 }));
 
