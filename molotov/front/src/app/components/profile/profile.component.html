@@ -5,22 +5,22 @@
     <div class="items-container">
       <div class="item">
         <h3 class="item-name-font">Username</h3>
-        <input *ngIf="edit" type="text" value="{{newUsername}}">
+        <input *ngIf="edit" type="text" [(ngModel)]="newUsername">
         <h4 class="no-edit-text" *ngIf="!edit">{{user.username}}</h4>
       </div>
       <div class="item">
         <h3 class="item-name-font">About</h3>
-        <textarea *ngIf="edit" wrap="soft">{{newAbout}}</textarea>
+        <textarea *ngIf="edit" wrap="soft" [(ngModel)]="newAbout"></textarea>
         <h4 class="no-edit-text" *ngIf="!edit">{{user.about}}</h4>
       </div>
       <div class="item">
         <h3 class="item-name-font">Password</h3>
         <div class="change-password-container" *ngIf="editPassword">
           <div>
-            <input type="password" value="{{newPassword}}" placeholder="New Password">
+            <input type="password" [(ngModel)]="newPassword" placeholder="New Password">
           </div>
           <div>
-            <input type="password" value="{{confirmPassword}}" placeholder="Confirm Password">
+            <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm Password">
           </div>
           <button class="edit-button" style="color: #ffde00; background-color: #5A5E64; border-color: #5A5E64;" (click)="cancelChangePassword()">Cancel</button>
           <span><button class="edit-button">Save</button></span>

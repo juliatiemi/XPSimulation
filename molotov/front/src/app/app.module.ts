@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCardModule, MatToolbarModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { AskQuestionComponent } from './components/ask-question/ask-question.com
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatSidenavModule
+    MatSidenavModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

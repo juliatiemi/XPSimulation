@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionComponent } from '../question/question.component';
 
 @Component({
   selector: 'app-ask-question',
@@ -15,8 +16,9 @@ export class AskQuestionComponent implements OnInit {
   }
 
   //todo
-  sumbmit() {
-  // send to api
+  //send to api
+  submit() {
+    
   }
 
   cancel() {

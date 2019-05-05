@@ -5,11 +5,11 @@
   <div class="items-container">
     <div class="item">
       <h3 class="item-name-font">Username</h3>
-      <input type="text" value="{{loginInfo.username}}">
+      <input type="text" [(ngModel)]="loginInfo.username">
     </div>
     <div class="item">
         <h3 class="item-name-font">Password</h3>
-        <input type="password" value="{{loginInfo.password}}">
+        <input type="password" [(ngModel)]="loginInfo.password">
       </div>
     <div class="button-container" >
       <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>

@@ -1,3 +1,15 @@
 <div class="page-container">
-
+    <div>
+        <h1 class="page-title-font">Home</h1>
+    </div>
+    <div class="items-container">
+        <div class="item">
+            <div *ngFor="let question of questions">
+                <a [routerLink]="['../question', question.id]" style="cursor: pointer;">
+                    <h3 class="item-name-font">{{question.title}}</h3>
+                    <h5>- {{question.author}}</h5>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
