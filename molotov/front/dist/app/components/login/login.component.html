@@ -1,0 +1,19 @@
+<div class="page-container">
+  <div>
+    <h1 class="page-title-font">Login</h1>
+  </div>
+  <div class="items-container">
+    <div class="item">
+      <h3 class="item-name-font">Username</h3>
+      <input type="text" [(ngModel)]="loginInfo.username">
+    </div>
+    <div class="item">
+        <h3 class="item-name-font">Password</h3>
+        <input type="password" [(ngModel)]="loginInfo.password">
+      </div>
+    <div class="button-container" >
+      <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>
+      <span><button class="submit-button" (click)="submit()">Submit</button></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="page-container">
+  <div>
+    <h1 class="page-title-font">Ask a question</h1>
+  </div>
+  <div class="items-container">
+    <div class="item">
+      <h3 class="item-name-font">Title</h3>
+      <input type="text" [(ngModel)]="question.title">    
+    </div>
+    <div class="item">
+      <h3 class="item-name-font">Question</h3>
+      <textarea wrap="soft" [(ngModel)]="question.body"></textarea>
+    </div>
+    <div class="button-container" >
+      <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>
+      <span><button class="submit-button" (click)="submit()">Submit</button></span>      
+    </div>
+  </div>
+</div>

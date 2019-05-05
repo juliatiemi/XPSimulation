@@ -1,0 +1,26 @@
+<div class="page-container">
+  <div>
+    <h1 class="page-title-font">{{question.title}}</h1>
+  </div>
+  <div class="items-container">
+    <div class="item">
+      <h3 class="item-name-font">{{question.body}}</h3>
+      <h5 class="no-edit-text">- {{question.author}}</h5>
+    </div>
+    <div class="item">
+      <button *ngIf="!answer" class="edit-button" (click)="answerQuestion()">Answer</button>
+      <textarea *ngIf="answer" wrap="soft" [(ngModel)]="newAnswerBody"></textarea>
+      <div *ngIf="answer" class="button-container">
+        <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>
+        <span><button class="submit-button" (click)="submit()">Submit</button></span>      
+      </div>
+    </div>
+    <div class="item">
+      <h3 class="item-name-font">Answers</h3>
+      <div *ngFor="let answer of answers">
+        <h4 *ngIf="!edit">{{answer.body}}</h4>
+        <h5>- {{answer.author}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

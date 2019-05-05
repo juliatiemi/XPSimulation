@@ -1,0 +1,39 @@
+<nav class="navbar container-background-color">
+  <div class="navbar-brand" (click)="sidenav.toggle()">
+    <a class="navbar-item">
+      <img class="logo-image" src="../../../assets/img/logo.png">
+    </a>
+    <span class="header-title-text">Simulation</span>
+  </div>
+</nav>
+<mat-sidenav-container class="side-menu-container">
+  <mat-sidenav #sidenav mode="over" class="side-menu container-background-color">
+    <div>
+      <a href="/questions">Home</a>
+    </div>
+
+    <div>
+      <a href="/ask">Ask a question</a>
+    </div>
+
+    <div>
+      <a href="/profile">Profile</a>
+    </div>
+
+    <div>
+      <a href="/login">Login</a>
+    </div>
+
+    <div>
+      <a href="/login">Logout</a>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+    <!--#ffde00 yellow
+Dark Gray #272727
+#343a40!important
+white #ffffff-->
+
