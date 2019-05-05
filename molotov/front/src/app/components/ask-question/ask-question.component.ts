@@ -1,0 +1,32 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-ask-question',
+  templateUrl: './ask-question.component.html',
+  styleUrls: ['./ask-question.component.scss']
+})
+export class AskQuestionComponent implements OnInit {
+
+  constructor() { }
+
+  question = {
+    title: "",
+    body: ""
+  }
+
+  //todo
+  sumbmit() {
+  // send to api
+  }
+
+  cancel() {
+  //  go back
+  }
+
+
+  //todo
+  //check if it is edit or write
+  ngOnInit() {
+  }
+
+}

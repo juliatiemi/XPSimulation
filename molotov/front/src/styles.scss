@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.header-title-text {
+    font-size: 2rem;
+    font-family: Helvetica;
+    vertical-align: middle;
+    text-transform: lowercase;
+    padding-left: 0.5rem;
+    color: #ffde00;
+}
+
+.logo-image {
+    height: 4rem;
+}
+
+.page-container {
+    background-color: #262626;
+    min-height: 84%;
+    margin: 70px 100px;
+    border-radius: 30px;
+    box-shadow: 10px;
+    padding: 3rem;
+}
+
+.page-title-font {
+    font-family: helvetica;
+    color: #ffde00;
+    font-size: 3rem;
+}
+
+.item-name-font {
+    color: white;
+    font-family: Helvetica;
+}
+
+.items-container {
+    padding: 2.5rem 2.5rem 0;
+    width: 100%;
+
+    .item {
+        margin-bottom: 2rem;
+        width: inherit;
+    
+        input {
+            width: inherit;
+            border-radius: 50px;
+            height: 2.5rem;
+            padding: 1rem;
+        }
+    
+        textarea {
+            width: inherit;
+            border-radius: 20px;
+            height: auto;
+            min-height: 15rem;
+            padding: 0.3rem 1rem;
+        }
+
+        .no-edit-text {
+            padding: 1rem;
+            font-weight: 300;
+            color: white;
+        }
+
+        .edit-button {
+            margin: 0.5rem 2rem 0;
+            border-radius: 40px;
+            height: 3rem;
+            width: 7rem;
+            font-size: 1.2rem;
+            background-color: #ffde00;
+            border-color: #ffde00;
+            color: #262626;
+        }
+
+        .change-password-container {
+            padding: 0.3rem 1rem;
+
+            input {
+                margin-bottom: 1rem;
+            }
+
+        }
+    }
+
+    .button-container {
+        text-align: center;
+
+        button {
+            margin: 0.5rem 2rem 0;
+            border-radius: 40px;
+            height: 4rem;
+            width: 9rem;
+            font-size: 1.2rem;
+        }
+    
+        .submit-button {
+            background-color: #ffde00;
+            border-color: #ffde00;
+            color: #262626;
+        }
+    
+        .cancel-button {
+            background-color: #5A5E64;
+            border-color: #5A5E64;
+            color: #ffde00;
+        }
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
