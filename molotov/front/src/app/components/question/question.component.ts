@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import Axios from 'axios';
+import { AppSettingsService } from 'src/app/app-settings.service';
 
  const baseurl = 'http://localhost:3000/'
  const headers = {
@@ -19,6 +20,7 @@ export class QuestionComponent implements OnInit {
 
   answers = [];
   answer = false;
+  showAnswer = true;
   newAnswerBody;
   questionId;
 
@@ -37,7 +39,7 @@ export class QuestionComponent implements OnInit {
     console.log(this.questionId)
     let newAnswer = {
       text: this.newAnswerBody,
-      user: "AAAAA",  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
+      user: JSON.parse(localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA)).username,  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
       question: this.questionId
     };
     console.log(newAnswer)
@@ -53,7 +55,8 @@ export class QuestionComponent implements OnInit {
       })
   }
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    public settings: AppSettingsService) { }
 
   //get answers
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import Axios from 'axios';
+import { AppSettingsService } from 'src/app/app-settings.service';
 
  const baseurl = 'http://localhost:3000/'
  const headers = {
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     Axios.post(baseurl + 'users/login/', this.loginInfo, { headers : headers })
       .then((resp) =>{
           if(resp.status === 200){
+            localStorage.setItem(this.settings.LOCALSTORAGE_USERDATA, JSON.stringify(resp.data));
             this.router.navigateByUrl('/questions');
           } else {
           console.log(resp.data)
@@ -52,7 +54,8 @@ export class LoginComponent implements OnInit {
     this.loginInfo.password = ''
   }
 
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+    public settings: AppSettingsService) { 
   }
 
   ngOnInit() {

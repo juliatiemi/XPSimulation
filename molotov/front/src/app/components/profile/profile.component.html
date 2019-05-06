@@ -29,6 +29,7 @@
       </div>
       <div class="button-container">
         <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>
+        <span><button (click)="delete()" class="submit-button" style="background-color: maroon; border-color: maroon; color: white;">Delete</button></span>
         <span><button *ngIf="edit" class="submit-button">Submit</button></span>
         <span><button *ngIf="!edit" class="submit-button" (click)="editProfile()">Edit</button></span>
       </div>

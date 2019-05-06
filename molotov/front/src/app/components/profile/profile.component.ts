@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppSettingsService } from 'src/app/app-settings.service';
 import {Router} from "@angular/router";
 import Axios from 'axios';
 
@@ -16,7 +17,8 @@ import Axios from 'axios';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    public settings: AppSettingsService) { }
 
   user = {
     username: "uaishda",
@@ -72,6 +74,23 @@ export class ProfileComponent implements OnInit {
       })
   }
 
+
+  delete() {
+    Axios.delete(baseurl + 'users/' + localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA) )
+      .then((resp) =>{
+          if(resp.status === 200){
+            this.router.navigateByUrl('/questions');
+          } else {
+          console.log(resp.data)
+          }
+      })
+      .catch((error) => {
+        if(error.response){
+          console.log(error.response.data)
+          console.log(error.response.status)         
+        }
+      })
+  }
   //todo
   //check userid
   ngOnInit() {
@@ -95,6 +114,8 @@ export class ProfileComponent implements OnInit {
         console.log(error.response.status)         
       }
     })
+
+    
 
   }
 
