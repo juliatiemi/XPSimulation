@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     Axios.post(baseurl + 'users/login/', this.loginInfo, { headers : headers })
       .then((resp) =>{
           if(resp.status === 200){
+            console.log(resp.data)
             localStorage.setItem(this.settings.LOCALSTORAGE_USERDATA, JSON.stringify(resp.data));
             this.router.navigateByUrl('/questions');
           } else {
@@ -50,8 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   cancel() {
-    this.loginInfo.username = ''
-    this.loginInfo.password = ''
+    this.router.navigateByUrl('/register');
   }
 
   constructor(private router: Router,
