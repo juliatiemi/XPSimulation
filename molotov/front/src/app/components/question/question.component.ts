@@ -33,12 +33,24 @@ export class QuestionComponent implements OnInit {
   //to do
   //send to api
   submit() {
+    this.questionId = this.route.snapshot.paramMap.get("id");
+    console.log(this.questionId)
     let newAnswer = {
-      body: this.newAnswerBody,
-      author: "get author"
+      text: this.newAnswerBody,
+      user: "AAAAA",  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
+      question: this.questionId
     };
+    console.log(newAnswer)
     this.answers.push(newAnswer);
     this.answer = false;
+    Axios.post(baseurl + 'answers/ask', {headers : headers})
+      .then((resp)=> {
+          console.log('aqui')
+          console.log(resp)
+        })
+      .catch((error) => {
+          console.log(error)
+      })
   }
 
   constructor(private route: ActivatedRoute) { }
@@ -61,6 +73,7 @@ export class QuestionComponent implements OnInit {
       Axios.get(baseurl + 'answers/answers/' + this.questionId, {headers: headers})
       .then((resp) => {
           this.answers = resp.data;
+          console.log(resp)
       })
       .catch((error) => {
         if(error.response){
@@ -68,7 +81,5 @@ export class QuestionComponent implements OnInit {
           console.log(error.response.data)
         }
       })
-
   }
-
 }

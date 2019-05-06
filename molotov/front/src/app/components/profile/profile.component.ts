@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import Axios from 'axios';
+
+ const baseurl = 'http://localhost:3000/'
+ const headers = {
+  'Content-Type' : 'application/json',
+  'Access-Control-Allow-Origin': '*'
+}
+
 
 @Component({
   selector: 'app-profile',
@@ -43,16 +52,49 @@ export class ProfileComponent implements OnInit {
   //todo
   //send to api
   submit() {
-    
+
+
+  
+
   }
+
 
   editProfile() {
     this.edit = true;
+    var userid = 'misterio'; ///id do usuario precisa estar aqui
+    Axios.patch(baseurl + 'users/desc/' + userid, { password: this.newPassword, about: this.newAbout, _id: this.newUsername })
+      .then((resp) => {
+          console.log(resp)
+          console.log('edicao executada');
+      })
+      .catch((error) => {
+          console.log(error)
+      })
   }
 
   //todo
   //check userid
   ngOnInit() {
+
+    //this.user é userid!!!  nao é um
+
+    Axios.post(baseurl + 'users/users/' + this.user, { headers : headers })
+    .then((resp) =>{
+        if(resp.status === 200){
+          console.log(resp) ///bota todos os valores como padrao aqui nessa parte
+          this.newUsername = resp.data._id;
+          this.newPassword = resp.data.password;
+          this.newAbout = resp.data.about; 
+        } else {
+        console.log(resp.data)
+        }
+    })
+    .catch((error) => {
+      if(error.response){
+        console.log(error.response.data)
+        console.log(error.response.status)         
+      }
+    })
 
   }
 
