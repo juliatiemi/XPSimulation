@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/groupinho/XPSimulation/issues"
   },
-  "homepage": "https://github.com/groupinho/XPSimulation#readme"
+  "homepage": "https://github.com/groupinho/XPSimulation#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
