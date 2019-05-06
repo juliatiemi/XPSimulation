@@ -7,6 +7,9 @@
     "start": "molotov/bin/www & cd molotov/front/ ; npm install ; npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": { 
+    "node": "^11" 
+ },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/groupinho/XPSimulation.git"
