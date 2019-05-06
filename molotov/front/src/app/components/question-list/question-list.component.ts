@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import Axios from 'axios';
+
+const baseurl = 'http://localhost:3000/';
+const headers = {
+ 'Content-Type' : 'application/json',
+ 'Access-Control-Allow-Origin': '*'
+}
 
 @Component({
   selector: 'app-question-list',
@@ -7,11 +15,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  questions = [{id: 1, title: "dhahsa asha asoihua aa", author: "ze mane"}, {id: 2, title: "dhahsa asha asoihua aadhahsa asha asoihua aa", author: "julia"}, {id:3, title: "dhahsa asha asoihua aadhahsa asha asoihua aadhahsa asha asoihua aadhahsa asha asoihua aa", author: "a"}, {id: 4, title: "dhahsa asha asoihua aadhahsa", author: "joaozinho"}];
+  questions = [];
 
   ngOnInit() {
+    Axios.get(baseurl + 'questions/user/', {headers:headers})
+    .then((resp) => {
+        if(resp.status === 200){
+          this.questions = resp.data;
+          console.log(this.questions)
+        }
+    })
+    .catch((error) => {
+      if(error.response){
+        console.log(error.response.data)
+        console.log(error.response.status)
+      }
+    })
   }
 
 }

@@ -5,9 +5,9 @@
     <div class="items-container">
         <div class="item">
             <div *ngFor="let question of questions">
-                <a [routerLink]="['../question', question.id]" style="cursor: pointer;">
-                    <h3 class="item-name-font">{{question.title}}</h3>
-                    <h5>- {{question.author}}</h5>
+                <a [routerLink]="['../question', question._id]" style="cursor: pointer;">
+                    <h3 class="item-name-font">{{question.text}}</h3>
+                    <h5>- {{question.user}}</h5>
                 </a>
             </div>
         </div>

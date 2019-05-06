@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import Axios from 'axios';
+
+ const baseurl = 'http://localhost:3000/'
+ const headers = {
+  'Content-Type' : 'application/json',
+  'Access-Control-Allow-Origin': '*'
+}
 
 @Component({
   selector: 'app-login',
@@ -13,15 +21,39 @@ export class LoginComponent implements OnInit {
   }
 
   //todo
-  sumbmit() {
-  // send to api
+  submit( ) {
+    if (this.loginInfo.username === ""){
+      //tratar username vazio
+
+    }
+    if(this.loginInfo.password === ""){
+      //tratar senha vazia
+    }
+    
+    console.log(this.loginInfo) 
+    Axios.post(baseurl + 'users/login/', this.loginInfo, { headers : headers })
+      .then((resp) =>{
+          if(resp.status === 200){
+            this.router.navigateByUrl('/questions');
+          } else {
+          console.log(resp.data)
+          }
+      })
+      .catch((error) => {
+        if(error.response){
+          console.log(error.response.data)
+          console.log(error.response.status)         
+        }
+      })
   }
 
   cancel() {
-  //  go back
+    this.loginInfo.username = ''
+    this.loginInfo.password = ''
   }
 
-  constructor() { }
+  constructor(private router: Router) { 
+  }
 
   ngOnInit() {
   }

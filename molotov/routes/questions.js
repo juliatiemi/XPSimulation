@@ -42,7 +42,8 @@ router.get('/user/:userID', function(req, res, next) {
 router.get('/questions/:questionID', function(req, res, next) {
   var id = req.params.questionID;
   console.log(id);
-  Question.find({ _id: questionID })
+  console.log('inexplcavel')
+  Question.find({ _id: id})
    .exec()
    .then(doc => {
      console.log(doc);

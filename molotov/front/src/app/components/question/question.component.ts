@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import Axios from 'axios';
+
+ const baseurl = 'http://localhost:3000/'
+ const headers = {
+  'Content-Type' : 'application/json',
+  'Access-Control-Allow-Origin': '*'
+}
 
 @Component({
   selector: 'app-question',
@@ -8,12 +15,9 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class QuestionComponent implements OnInit {
 
-  question = {
-    title: "pq a vida é difícil?",
-    body: "serio sacanagem isso aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn aksudhahsa asha asoihua aahb ajskasnkajn",
-    author: "Tiemi"
-  };
-  answers = [{body: "dhahsa asha asoihua aa", author: "ze mane"}, {body: "dhahsa asha asoihua aadhahsa asha asoihua aa", author: "julia"}, {body: "dhahsa asha asoihua aadhahsa asha asoihua aadhahsa asha asoihua aadhahsa asha asoihua aa", author: "a"}, {body: "dhahsa asha asoihua aadhahsa", author: "joaozinho"}];
+  question = {};
+
+  answers = [];
   answer = false;
   newAnswerBody;
   questionId;
@@ -43,6 +47,27 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.answer = false;
     this.questionId = this.route.snapshot.paramMap.get("id");
+    console.log(this.questionId)
+    Axios.get(baseurl + 'questions/questions/' + this.questionId, {headers: headers})
+      .then((resp) => {
+          this.question = resp.data[0];
+      })
+      .catch((error) => {
+        if(error.response){
+          console.log(error.response.status)
+          console.log(error.response.data)
+        }
+      })
+      Axios.get(baseurl + 'answers/answers/' + this.questionId, {headers: headers})
+      .then((resp) => {
+          this.answers = resp.data;
+      })
+      .catch((error) => {
+        if(error.response){
+          console.log(error.response.status)
+          console.log(error.response.data)
+        }
+      })
 
   }
 
