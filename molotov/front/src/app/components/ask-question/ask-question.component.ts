@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionComponent } from '../question/question.component';
+import {Router} from "@angular/router";
+import { AppSettingsService } from 'src/app/app-settings.service';
 
 @Component({
   selector: 'app-ask-question',
@@ -8,7 +10,8 @@ import { QuestionComponent } from '../question/question.component';
 })
 export class AskQuestionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    public settings: AppSettingsService) { }
 
   question = {
     title: "",
@@ -22,13 +25,16 @@ export class AskQuestionComponent implements OnInit {
   }
 
   cancel() {
-  //  go back
+    this.router.navigateByUrl('/questions');
   }
 
 
   //todo
   //check if it is edit or write
   ngOnInit() {
+    if(!localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA)) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import Axios from 'axios';
+import { AppSettingsService } from 'src/app/app-settings.service';
 
  const baseurl = 'http://localhost:3000/'
  const headers = {
@@ -19,6 +20,7 @@ export class QuestionComponent implements OnInit {
 
   answers = [];
   answer = false;
+  showAnswer = true;
   newAnswerBody;
   questionId;
 
@@ -33,15 +35,28 @@ export class QuestionComponent implements OnInit {
   //to do
   //send to api
   submit() {
+    this.questionId = this.route.snapshot.paramMap.get("id");
+    console.log(this.questionId)
     let newAnswer = {
-      body: this.newAnswerBody,
-      author: "get author"
+      text: this.newAnswerBody,
+      user: JSON.parse(localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA)).username,  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
+      question: this.questionId
     };
+    console.log(newAnswer)
     this.answers.push(newAnswer);
     this.answer = false;
+    Axios.post(baseurl + 'answers/ask', {headers : headers})
+      .then((resp)=> {
+          console.log('aqui')
+          console.log(resp)
+        })
+      .catch((error) => {
+          console.log(error)
+      })
   }
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    public settings: AppSettingsService) { }
 
   //get answers
   ngOnInit() {
@@ -61,6 +76,7 @@ export class QuestionComponent implements OnInit {
       Axios.get(baseurl + 'answers/answers/' + this.questionId, {headers: headers})
       .then((resp) => {
           this.answers = resp.data;
+          console.log(resp)
       })
       .catch((error) => {
         if(error.response){
@@ -68,7 +84,5 @@ export class QuestionComponent implements OnInit {
           console.log(error.response.data)
         }
       })
-
   }
-
 }

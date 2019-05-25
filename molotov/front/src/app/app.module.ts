@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
 import { AskQuestionComponent } from './components/ask-question/ask-question.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AskQuestionComponent } from './components/ask-question/ask-question.com
     MatCardModule,
     MatCheckboxModule,
     MatSidenavModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

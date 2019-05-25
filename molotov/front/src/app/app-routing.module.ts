@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'ask', component: AskQuestionComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: '**', component: QuestionListComponent }
 ];
 
 @NgModule({
