@@ -24,7 +24,7 @@ export class QuestionListComponent implements OnInit {
     .then((resp) => {
         if(resp.status === 200){
           this.questions = resp.data;
-          console.log(this.questions)
+          console.log(this.questions);
         }
     })
     .catch((error) => {

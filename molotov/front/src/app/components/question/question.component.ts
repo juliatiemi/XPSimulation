@@ -39,13 +39,13 @@ export class QuestionComponent implements OnInit {
     console.log(this.questionId)
     let newAnswer = {
       text: this.newAnswerBody,
-      user: JSON.parse(localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA)).username,  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
+      user: localStorage.getItem('username'),  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
       question: this.questionId
     };
     console.log(newAnswer)
     this.answers.push(newAnswer);
     this.answer = false;
-    Axios.post(baseurl + 'answers/ask', {headers : headers})
+    Axios.post(baseurl + 'answers/ask', newAnswer ,{headers : headers})
       .then((resp)=> {
           console.log('aqui')
           console.log(resp)

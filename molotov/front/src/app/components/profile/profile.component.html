@@ -1,17 +1,20 @@
 <div class="page-container">
     <div>
-      <h1 class="page-title-font">Login</h1>
+      <h1 class="page-title-font">Profile</h1>
     </div>
     <div class="items-container">
       <div class="item">
         <h3 class="item-name-font">Username</h3>
-        <input *ngIf="edit" type="text" [(ngModel)]="newUsername">
-        <h4 class="no-edit-text" *ngIf="!edit">{{user.username}}</h4>
+        <h4 class="no-edit-text">{{user._id}}</h4>
       </div>
       <div class="item">
         <h3 class="item-name-font">About</h3>
         <textarea *ngIf="edit" wrap="soft" [(ngModel)]="newAbout"></textarea>
         <h4 class="no-edit-text" *ngIf="!edit">{{user.about}}</h4>
+      </div>
+      <div class="item">
+        <h3 class="item-name-font">Points</h3>
+        <h4 class="no-edit-text">{{user.points}}</h4>
       </div>
       <div class="item">
         <h3 class="item-name-font">Password</h3>
@@ -23,14 +26,14 @@
             <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm Password">
           </div>
           <button class="edit-button" style="color: #ffde00; background-color: #5A5E64; border-color: #5A5E64;" (click)="cancelChangePassword()">Cancel</button>
-          <span><button class="edit-button">Save</button></span>
+          <span><button class="edit-button" (click)="savePassword()">Save</button></span>
         </div>
         <button *ngIf="!editPassword" class="edit-button" (click)="changePassword()">Change</button>
       </div>
       <div class="button-container">
         <span><button class="cancel-button" (click)="cancel()">Cancel</button></span>
         <span><button (click)="delete()" class="submit-button" style="background-color: maroon; border-color: maroon; color: white;">Delete</button></span>
-        <span><button *ngIf="edit" class="submit-button">Submit</button></span>
+        <span><button *ngIf="edit" class="submit-button" (click)="submit()" >Submit</button></span>
         <span><button *ngIf="!edit" class="submit-button" (click)="editProfile()">Edit</button></span>
       </div>
     </div>

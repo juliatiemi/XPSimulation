@@ -21,10 +21,13 @@ export class ProfileComponent implements OnInit {
     public settings: AppSettingsService) { }
 
   user = {
-    username: "uaishda",
-    password: "oshdsas",
-    about: "jahshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisshiasndhaidhna sidhalsnd aisdha"
-  }
+    _id: '',
+    answers: [],
+    password: '',
+    questions: [],
+    points: 0,
+    about: ''
+  };
   edit = false;
   editPassword = false;
   newUsername = "";
@@ -51,23 +54,30 @@ export class ProfileComponent implements OnInit {
     this.edit = false;
   }
 
+  savePassword() {
+    if(this.confirmPassword == this.newPassword){
+      var userid = localStorage.getItem('username'); ///id do usuario precisa estar aqui
+      Axios.patch(baseurl + 'users/pass/' + userid, { password: this.newPassword, about: this.newAbout})
+        .then((resp) => {
+            console.log(resp)
+            console.log('edicao executada');
+            this.editPassword = false;
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+  }
+
   //todo
   //send to api
   submit() {
-
-
-  
-
-  }
-
-
-  editProfile() {
-    this.edit = true;
-    var userid = 'misterio'; ///id do usuario precisa estar aqui
-    Axios.patch(baseurl + 'users/desc/' + userid, { password: this.newPassword, about: this.newAbout, _id: this.newUsername })
+    var userid = localStorage.getItem('username'); ///id do usuario precisa estar aqui
+    Axios.patch(baseurl + 'users/desc/' + userid, { password: this.newPassword, about: this.newAbout})
       .then((resp) => {
           console.log(resp)
           console.log('edicao executada');
+          this.edit = false;
       })
       .catch((error) => {
           console.log(error)
@@ -75,8 +85,13 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  editProfile() {
+    this.edit = true;
+  }
+
+
   delete() {
-    Axios.delete(baseurl + 'users/' + localStorage.getItem(this.settings.LOCALSTORAGE_USERDATA) )
+    Axios.delete(baseurl + 'users/' + localStorage.getItem('username') )
       .then((resp) =>{
           if(resp.status === 200){
             this.router.navigateByUrl('/questions');
@@ -95,15 +110,15 @@ export class ProfileComponent implements OnInit {
   //check userid
   ngOnInit() {
 
-    //this.user é userid!!!  nao é um
+    var gotUser = localStorage.getItem('username');
+    console.log(this.user);
 
-    Axios.post(baseurl + 'users/users/' + this.user, { headers : headers })
+    Axios.get(baseurl + 'users/users/' + gotUser, { headers : headers })
     .then((resp) =>{
         if(resp.status === 200){
           console.log(resp) ///bota todos os valores como padrao aqui nessa parte
-          this.newUsername = resp.data._id;
-          this.newPassword = resp.data.password;
-          this.newAbout = resp.data.about; 
+          this.user = resp.data[0];
+          console.log(this.user); 
         } else {
         console.log(resp.data)
         }
@@ -114,9 +129,6 @@ export class ProfileComponent implements OnInit {
         console.log(error.response.status)         
       }
     })
-
-    
-
   }
 
 }

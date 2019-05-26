@@ -31,12 +31,11 @@ export class LoginComponent implements OnInit {
       //tratar senha vazia
     }
     
-    console.log(this.loginInfo) 
     Axios.post(baseurl + 'users/login/', this.loginInfo, { headers : headers })
       .then((resp) =>{
           if(resp.status === 200){
-            console.log(resp.data)
-            localStorage.setItem(this.settings.LOCALSTORAGE_USERDATA, JSON.stringify(resp.data));
+            localStorage.setItem('username', resp.data._id);
+            console.log(localStorage.getItem('username'));
             this.router.navigateByUrl('/questions');
           } else {
           console.log(resp.data)
