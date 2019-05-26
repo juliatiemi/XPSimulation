@@ -106,4 +106,21 @@ router.delete('/user/:userID', function(req, res, next) {
    });
 });
 
+//add tag
+router.patch('/tag/:userId', (req, res, next) => {
+  const id = req.params.userId;
+  var tag = req.body.tag;
+  User.update({_id: id}, {$push: {tags: tag}})
+    .exec()
+    .then(result => {
+      res.status(200).json(result);
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        error: err
+      });
+    });
+});
+
 module.exports = router;
