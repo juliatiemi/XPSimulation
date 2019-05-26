@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 app.use(cors({
-  origin:['http://localhost:4200', 'http://127.0.0.1:4200',/^https\:\/\/molotovy/],
+	origin:['http://localhost:4200', 'https://127.0.0.1:4200','http://localhost:8080','https://localhost:8080'],
   credentials:true
 }));
 
@@ -65,6 +65,26 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/questions', questionsRouter);
 app.use('/answers', answersRouter);
+
+// Add headers
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
