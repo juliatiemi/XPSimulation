@@ -23,7 +23,9 @@ export class AskQuestionComponent implements OnInit {
 
   question = {
     body: ""
-  }
+  };
+  tag = "";
+  tags = [];
 
   //todo
   //send to api
@@ -36,10 +38,19 @@ export class AskQuestionComponent implements OnInit {
     }
 
 
-    Axios.post(baseurl + 'questions/ask', quest ,{headers : headers})
+    //aqui aqui aqui
+    Axios.post(baseurl + 'questions/ask', quest, {headers : headers})
     .then((resp)=> {
         console.log('aqui')
         console.log(resp)
+        Axios.patch(baseurl + 'questions/tags' /*+ resp.question.id? */, {tags: this.tags})
+          .then((resp)=> {
+            console.log('aqui')
+            console.log(resp)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
       })
     .catch((error) => {
         console.log(error)
@@ -50,13 +61,24 @@ export class AskQuestionComponent implements OnInit {
     this.router.navigateByUrl('/questions');
   }
 
+  insertTag() {
+    if(this.tag == "" || this.tags.includes(this.tag)) {
+      return;
+    }
+    this.tags.push(this.tag);
+    this.tag = "";
+  }
+
+  deleteTag(index) {
+    this.tags.splice(index);
+  }
 
   //todo
   //check if it is edit or write
   ngOnInit() {
-    if(!localStorage.getItem('username')) {
-      this.router.navigateByUrl('/login');
-    }
+    // if(!localStorage.getItem('username')) {
+    //   this.router.navigateByUrl('/login');
+    // }
   }
 
 }

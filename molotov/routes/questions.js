@@ -124,9 +124,9 @@ router.delete('/user/:userID', function(req, res, next) {
 });
 
 //add tag
-router.patch('/tag/:questionId', (req, res, next) => {
+router.patch('/tags/:questionId', (req, res, next) => {
   const id = req.params.questionId;
-  var tag = req.body.tag;
+  var tag = req.body.tags;
   Question.update({_id: id}, {$push: {tags: tag}})
     .exec()
     .then(result => {
