@@ -75,6 +75,23 @@ router.post('/ask', (req, res, next) => {
   })
 });
 
+//update voting
+router.post('/updateVote/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  var newPoints = req.body.points;
+  console.log(id);
+  Question.update({_id: id}, {$set: {points: newPoints}})
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error:err })
+    });
+});
+
 //delete by questionid
 router.delete('/questions/:questionID', function(req, res, next) {
   var id = req.params.questionID;

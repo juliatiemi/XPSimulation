@@ -21,6 +21,31 @@
     border-radius: 30px;
     box-shadow: 10px;
     padding: 3rem;
+
+    .vote-system {
+        padding: 1rem;
+        font-weight: 300;
+        color: white;
+
+        .voting-button {
+            margin: 0 0.5rem;
+            border-radius: 40px;
+            height: 1.8rem;
+            width: 1.8rem;
+        }
+
+        .voting-button-voted {
+            background-color: #ffde00;
+            border-color: #ffde00;
+            color: #262626;
+        }
+        
+        .voting-button-not-voted {
+            background-color: #5A5E64;
+            border-color: #5A5E64;
+            color: #ffde00;
+        }
+    }
 }
 
 .page-title-font {
@@ -107,6 +132,10 @@
             color: #ffde00;
         }
     }
+}
+
+.border-red {
+    border-color: red;
 }
 
 html, body { height: 100%; }
