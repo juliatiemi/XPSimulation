@@ -9,7 +9,6 @@ import { AppSettingsService } from 'src/app/app-settings.service';
   'Access-Control-Allow-Origin': '*'
 }
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -58,7 +57,7 @@ export class RegisterComponent implements OnInit {
   }
   
   cancel() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/questions');
   }
   
   ngOnInit() {

@@ -1,12 +1,16 @@
 <div class="page-container">
   <div>
+    <h5 class="vote-system">
+      <button class="voting-button" [ngClass]="{ 'voting-button-voted' : subQuestionButtonClicked, 'voting-button-not-voted' : !subQuestionButtonClicked }" (click)="downvoteQuestion(question)">-</button>
+      {{question.points}}
+      <button class="voting-button" [ngClass]="{ 'voting-button-voted' : addQuestionButtonClicked, 'voting-button-not-voted' : !addQuestionButtonClicked }" (click)="upvoteQuestion(question)">+</button>
+    </h5>
     <h1 class="page-title-font">{{question.text}}</h1>
+    <div class="item">
+      <h3 class="item-name-font">- {{question.user}}</h3>
+    </div>
   </div>
   <div class="items-container">
-    <div class="item">
-      <h3 class="item-name-font">{{question.text}}</h3>
-      <h5 class="no-edit-text">- {{question.user}}</h5>
-    </div>
     <div class="item">
       <button *ngIf="!answer" class="edit-button" (click)="answerQuestion()">Answer</button>
       <textarea *ngIf="answer" wrap="soft" [(ngModel)]="newAnswerBody"></textarea>
@@ -18,7 +22,12 @@
     <div class="item">
       <h3 class="item-name-font">Answers</h3>
       <div *ngFor="let answer of answers">
-        <h4 *ngIf="!edit">{{answer.text}}</h4>
+        <h6 class="vote-system" style="padding: 2.5rem 0 0 0">
+          <button class="voting-button" [ngClass]="{ 'voting-button-voted' : answer.subAnswerButtonClicked, 'voting-button-not-voted' : !answer.subAnswerButtonClicked }" (click)="downvoteAnswer(answer)">-</button>
+          {{answer.points}}
+          <button class="voting-button" [ngClass]="{ 'voting-button-voted' : answer.addAnswerButtonClicked, 'voting-button-not-voted' : !answer.addAnswerButtonClicked }" (click)="upvoteAnswer(answer)">+</button>
+        </h6>
+        <h4 *ngIf="!edit" style="padding: 0">{{answer.text}}</h4>
         <h5>- {{answer.user}}</h5>
       </div>
     </div>
