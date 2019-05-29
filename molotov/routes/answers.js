@@ -54,8 +54,8 @@ router.get('/user/:userID', function(req, res, next) {
 });
 
 //update voting
-router.post('/updateVote/:answerID', function(req, res, next) {
-  var id = req.body.answerID;
+router.patch('/updateVote/:answerID', function(req, res, next) {
+  var id = req.params.answerID;
   var newPoints = req.body.points;
   Answer.update({_id: id}, {$set: {points: newPoints}})
     .exec()

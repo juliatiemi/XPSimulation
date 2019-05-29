@@ -21,15 +21,16 @@
       </div>
     </div>
     <div class="item">
-      <h3 class="item-name-font">Answers</h3>
+      <h3 class="item-name-font">Answers</h3><br>
       <div *ngFor="let answer of answers">
-        <h6 class="vote-system" style="padding: 2.5rem 0 0 0">
+        <h4 *ngIf="!edit" style="padding: 0">{{answer.text}}</h4>
+        <h6 class="vote-system" style="padding: 0 0 0 0">
           <button class="voting-button" [ngClass]="{ 'voting-button-voted' : answer.subAnswerButtonClicked, 'voting-button-not-voted' : !answer.subAnswerButtonClicked }" (click)="downvoteAnswer(answer)">-</button>
           {{answer.points}}
           <button class="voting-button" [ngClass]="{ 'voting-button-voted' : answer.addAnswerButtonClicked, 'voting-button-not-voted' : !answer.addAnswerButtonClicked }" (click)="upvoteAnswer(answer)">+</button>
         </h6>
-        <h4 *ngIf="!edit" style="padding: 0">{{answer.text}}</h4>
         <h5>- {{answer.user}}</h5>
+        <br>
       </div>
     </div>
   </div>

@@ -18,8 +18,35 @@ export class QuestionListComponent implements OnInit {
   constructor(private router: Router) { }
 
   questions = [];
+  tags_text = "";
 
-  ngOnInit() {
+  search() {
+    if (this.tags_text == ""){
+      this.get_all_questions();
+      return;
+    }
+    var tag_list = this.tags_text.split(',');
+    var i, j;
+    var quest;
+    var tag;
+    var remove;
+    for (i in this.questions){
+      quest = this.questions[i];
+      remove = true;
+      for (j in tag_list){
+        tag = tag_list[j];
+        if (quest.tags.includes(tag)){
+          remove = false;
+          break;
+        }
+      }
+      if (remove){
+        this.questions.splice(i, 1)
+      }
+    }
+  }
+
+  get_all_questions(){
     Axios.get(baseurl + 'questions/user/', {headers:headers})
     .then((resp) => {
         if(resp.status === 200){
@@ -33,6 +60,10 @@ export class QuestionListComponent implements OnInit {
         console.log(error.response.status)
       }
     })
+  }
+
+  ngOnInit() {
+    this.get_all_questions();
   }
 
 }

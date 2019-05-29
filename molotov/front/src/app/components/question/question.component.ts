@@ -150,7 +150,8 @@ export class QuestionComponent implements OnInit {
     let newAnswer = {
       text: this.newAnswerBody,
       user: localStorage.getItem('username'),  // <<<< ======= substituir aqui o id de quem ta perguntando **usuario da sessão
-      question: this.questionId
+      question: this.questionId,
+      points: 0
     };
     this.answers.push(newAnswer);
     this.answer = false;

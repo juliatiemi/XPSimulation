@@ -2,6 +2,10 @@
     <div>
         <h1 class="page-title-font">Home</h1>
     </div>
+    <div class="item">
+      <input type="text" [(ngModel)]="tags_text">
+      <span><button class="submit-button" (click)="search()">Search</button></span>
+    </div>
     <div class="items-container">
         <div class="item">
             <div *ngFor="let question of questions">
