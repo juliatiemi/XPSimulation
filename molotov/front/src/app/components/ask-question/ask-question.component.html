@@ -4,12 +4,16 @@
   </div>
   <div class="items-container">
     <div class="item">
+      <h3 class="item-name-font">Title</h3>
+      <input #titleInput type="text" [(ngModel)]="question.title">
+    </div>
+    <div class="item">
       <h3 class="item-name-font">Question</h3>
-      <textarea wrap="soft" [(ngModel)]="question.body"></textarea>
+      <textarea wrap="soft" [(ngModel)]="question.text"></textarea>
     </div>
     <div class="item">
       <h3 class="item-name-font">Tags</h3>
-      <input #tagInput type="text" (keyup.enter)="insertTag()" [(ngModel)]="tag">
+      <input #tagInput type="text" [(ngModel)]="tag">
     </div>
     <div class="item">
       <div class="item-name-font" style="padding: 0.2rem 1rem; cursor: pointer;" *ngFor="let atag of tags; index as i" (click)="deleteTag(i)">X     {{atag}}</div>

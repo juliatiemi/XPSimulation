@@ -22,7 +22,8 @@ export class AskQuestionComponent implements OnInit {
     public settings: AppSettingsService) { }
 
   question = {
-    body: ""
+    title: "",
+    text: ""
   };
   tag = "";
   tags = [];
@@ -31,19 +32,22 @@ export class AskQuestionComponent implements OnInit {
   //send to api
   submit() {
     var quest = {
-      text: this.question.body,
+      title: this.question.title,
+      text: this.question.text,
       user: localStorage.getItem('username'),
       points: 0,
       tags: []
     }
 
-
     //aqui aqui aqui
     Axios.post(baseurl + 'questions/ask', quest, {headers : headers})
     .then((resp)=> {
-        console.log('aqui')
-        console.log(resp)
-        Axios.patch(baseurl + 'questions/tags' /*+ resp.question.id? */, {tags: this.tags})
+        console.log('aqui');
+        console.log(resp);
+        var tag_list = this.splitTags(this.tag);
+        console.log(tag_list);
+        var createdQuestionId = resp.data.createdQuestion._id;
+        Axios.patch(baseurl + 'questions/tags/' + createdQuestionId + '/' + tag_list, {headers: headers})
           .then((resp)=> {
             console.log('aqui')
             console.log(resp)
@@ -51,9 +55,10 @@ export class AskQuestionComponent implements OnInit {
           .catch((error) => {
               console.log(error)
           })
+        this.router.navigateByUrl('/questions');
       })
     .catch((error) => {
-        console.log(error)
+        console.log(error);
     })
   }
 
@@ -61,16 +66,8 @@ export class AskQuestionComponent implements OnInit {
     this.router.navigateByUrl('/questions');
   }
 
-  insertTag() {
-    if(this.tag == "" || this.tags.includes(this.tag)) {
-      return;
-    }
-    this.tags.push(this.tag);
-    this.tag = "";
-  }
-
-  deleteTag(index) {
-    this.tags.splice(index);
+  splitTags(tag: string) {
+    return tag.split(',');
   }
 
   //todo

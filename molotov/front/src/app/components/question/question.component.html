@@ -1,11 +1,12 @@
 <div class="page-container">
   <div>
+    <h1 class="page-title-font">{{question.title}}</h1>
+    <h2 class="page-title-font">{{question.text}}</h2>
     <h5 class="vote-system">
       <button class="voting-button" [ngClass]="{ 'voting-button-voted' : subQuestionButtonClicked, 'voting-button-not-voted' : !subQuestionButtonClicked }" (click)="downvoteQuestion(question)">-</button>
       {{question.points}}
       <button class="voting-button" [ngClass]="{ 'voting-button-voted' : addQuestionButtonClicked, 'voting-button-not-voted' : !addQuestionButtonClicked }" (click)="upvoteQuestion(question)">+</button>
     </h5>
-    <h1 class="page-title-font">{{question.text}}</h1>
     <div class="item">
       <h3 class="item-name-font">- {{question.user}}</h3>
     </div>

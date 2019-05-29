@@ -31,20 +31,22 @@ export class QuestionComponent implements OnInit {
     }
 
     if(this.addQuestionButtonClicked == true) {
-      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { points: question.points })
+      question.points--;
+      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { headers: headers, points: question.points })
         .then((resp) => {
+          console.log(resp)
           this.addQuestionButtonClicked = false;
-          question.points--;
         })
         .catch((error) => {
           console.log(error)
         })
     }
     else {
-      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { points: question.points })
+      question.points++;
+      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { headers: headers, points: question.points })
         .then((resp) => {
+          console.log(resp)
           this.addQuestionButtonClicked = true;
-          question.points++;
         })
         .catch((error) => {
           console.log(error)
@@ -57,20 +59,20 @@ export class QuestionComponent implements OnInit {
       return;
     }
     if(this.subQuestionButtonClicked == true) {
-      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { points: question.points })
+      question.points++;
+      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { headers: headers, points: question.points })
         .then((resp) => {
           this.subQuestionButtonClicked = false;
-          question.points++;
         })
         .catch((error) => {
           console.log(error)
         })
     }
     else {
-      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { points: question.points })
+      question.points--;
+      Axios.patch(baseurl + 'questions/updateVote/' + question._id, { headers: headers, points: question.points })
         .then((resp) => {
           this.subQuestionButtonClicked = true;
-          question.points--;
         })
         .catch((error) => {
           console.log(error)
@@ -83,20 +85,21 @@ export class QuestionComponent implements OnInit {
       return;
     }
     if(answer.addAnswerButtonClicked == true) {
-      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { points: answer.points })
+      answer.points--;
+      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { headers: headers, points: answer.points })
         .then((resp) => {
+          console.log(resp);
           answer.addAnswerButtonClicked = false;
-          answer.points--;
         })
         .catch((error) => {
           console.log(error)
         })
     }
     else {
-      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { points: answer.points })
+      answer.points++;
+      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { headers: headers, points: answer.points })
         .then((resp) => {
           answer.addAnswerButtonClicked = true;
-          answer.points++;
         })
         .catch((error) => {
           console.log(error)
@@ -110,20 +113,20 @@ export class QuestionComponent implements OnInit {
       return;
     }
     if(answer.subAnswerButtonClicked == true) {
-      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { points: answer.points })
+      answer.points++;
+      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { headers: headers, points: answer.points })
         .then((resp) => {
           answer.subAnswerButtonClicked = false;
-          answer.points++;
         })
         .catch((error) => {
           console.log(error)
         })
     }
     else {
-      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { points: answer.points })
+      answer.points--;
+      Axios.patch(baseurl + 'answers/updateVote/' + answer._id, { headers: headers, points: answer.points })
         .then((resp) => {
           answer.subAnswerButtonClicked = true;
-          answer.points--;
         })
         .catch((error) => {
           console.log(error)
@@ -192,9 +195,6 @@ export class QuestionComponent implements OnInit {
           console.log(error.response.data)
         }
       })
-
-  this.question = {text: "lalalala pergunta| ", user: "tiemi ", points: 221}
-  this.answers = [{user: "julia", text: "resposoasjdoaijs", points: 12},{user: "julasia", text: "resposo asjdoa asasaijs", points: 2}]
   }
 
 }
