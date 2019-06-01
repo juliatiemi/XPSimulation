@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 app.use(cors({
-	origin:['http://localhost:4200', 'https://127.0.0.1:4200','http://localhost:8080','https://localhost:8080'],
+	origin:['http://localhost:4200', 'https://127.0.0.1:4200','http://localhost:3000','http://localhost:8080'],
   credentials:true
 }));
 
