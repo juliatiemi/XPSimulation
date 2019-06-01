@@ -3,11 +3,11 @@ import {Router} from "@angular/router";
 import Axios from 'axios';
 import { AppSettingsService } from 'src/app/app-settings.service';
 
- const baseurl = 'http://localhost:3000/'
+ const baseurl = 'http://localhost:3000/';
  const headers = {
-  'Content-Type' : 'application/json',
-  'Access-Control-Allow-Origin': '*'
-}
+    'Content-Type' : 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  };
 
 @Component({
   selector: 'app-login',
@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit {
   }
 
   cancel() {
+    this.loginInfo.username = ''
+    this.loginInfo.password = ''
     this.router.navigateByUrl('/register');
   }
 

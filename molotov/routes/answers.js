@@ -53,6 +53,21 @@ router.get('/user/:userID', function(req, res, next) {
    })
 });
 
+//update voting
+router.patch('/updateVote/:answerID', function(req, res, next) {
+  var id = req.params.answerID;
+  var newPoints = req.body.points;
+  Answer.update({_id: id}, {$set: {points: newPoints}})
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error:err })
+    });
+});
 
 //add new question
 router.post('/ask', (req, res, next) => {

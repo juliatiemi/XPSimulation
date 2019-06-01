@@ -58,6 +58,7 @@ router.get('/questions/:questionID', function(req, res, next) {
 //add new question
 router.post('/ask', (req, res, next) => {
   var question = new Question({
+    title: req.body.title,
     text: req.body.text,
     user: req.body.user,
     answers: req.body.answers
@@ -73,6 +74,24 @@ router.post('/ask', (req, res, next) => {
     message: "Successful creation",
     createdQuestion: question
   })
+});
+
+//update voting
+router.patch('/updateVote/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  var newPoints = req.body.points;
+  console.log(id);
+  console.log(newPoints);
+  Question.update({_id: id}, {$set: {points: newPoints}})
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error:err })
+    });
 });
 
 //delete by questionid
@@ -107,20 +126,25 @@ router.delete('/user/:userID', function(req, res, next) {
 });
 
 //add tag
-router.patch('/tag/:questionId', (req, res, next) => {
+router.patch('/tags/:questionId/:tags', (req, res, next) => {
   const id = req.params.questionId;
-  var tag = req.body.tag;
-  Question.update({_id: id}, {$push: {tags: tag}})
-    .exec()
-    .then(result => {
-      res.status(200).json(result);
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({
-        error: err
+  const tags = req.params.tags;
+  var i;
+  for (i in tags) {
+    var tag = tags[i];
+    console.log(tag)
+    Question.update({_id: id}, {$push: {tags: tag}})
+      .exec()
+      .then(result => {
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          error: err
+        });
       });
-    });
+  }
 });
 
 module.exports = router;

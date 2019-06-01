@@ -78,6 +78,7 @@ export class ProfileComponent implements OnInit {
           console.log(resp)
           console.log('edicao executada');
           this.edit = false;
+          this.user.about = this.newAbout;
       })
       .catch((error) => {
           console.log(error)
