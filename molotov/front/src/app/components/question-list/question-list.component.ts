@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import Axios from 'axios';
+import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 const baseurl = 'http://localhost:3000/';
 const headers = {
@@ -30,8 +31,9 @@ export class QuestionListComponent implements OnInit {
     var quest;
     var tag;
     var remove;
-    for (i in this.questions){
-      quest = this.questions[i];
+    var temp_questions = this.get_all_questions();
+    for (i in temp_questions){
+      quest = temp_questions[i];
       remove = true;
       for (j in tag_list){
         tag = tag_list[j];
@@ -41,17 +43,19 @@ export class QuestionListComponent implements OnInit {
         }
       }
       if (remove){
-        this.questions.splice(i, 1)
+        temp_questions.splice(i, 1)
       }
     }
+    this.questions = temp_questions;
   }
 
   get_all_questions(){
+    var temp_questions;
     Axios.get(baseurl + 'questions/user/', {headers:headers})
     .then((resp) => {
         if(resp.status === 200){
-          this.questions = resp.data;
-          console.log(this.questions);
+          temp_questions = resp.data;
+          console.log(temp_questions);
         }
     })
     .catch((error) => {
@@ -60,10 +64,11 @@ export class QuestionListComponent implements OnInit {
         console.log(error.response.status)
       }
     })
+    return temp_questions;
   }
 
   ngOnInit() {
-    this.get_all_questions();
+    this.questions = this.get_all_questions();
   }
 
 }
