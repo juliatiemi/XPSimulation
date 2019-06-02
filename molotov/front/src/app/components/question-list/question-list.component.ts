@@ -31,9 +31,8 @@ export class QuestionListComponent implements OnInit {
     var quest;
     var tag;
     var remove;
-    var temp_questions = this.get_all_questions();
-    for (i in temp_questions){
-      quest = temp_questions[i];
+    for (i in this.questions){
+      quest = this.questions[i];
       remove = true;
       for (j in tag_list){
         tag = tag_list[j];
@@ -43,19 +42,17 @@ export class QuestionListComponent implements OnInit {
         }
       }
       if (remove){
-        temp_questions.splice(i, 1)
+        this.questions.splice(i, 1)
       }
     }
-    this.questions = temp_questions;
   }
 
   get_all_questions(){
-    var temp_questions;
     Axios.get(baseurl + 'questions/user/', {headers:headers})
     .then((resp) => {
         if(resp.status === 200){
-          temp_questions = resp.data;
-          console.log(temp_questions);
+          this.questions = resp.data;
+          console.log(this.questions);
         }
     })
     .catch((error) => {
@@ -64,11 +61,10 @@ export class QuestionListComponent implements OnInit {
         console.log(error.response.status)
       }
     })
-    return temp_questions;
   }
 
   ngOnInit() {
-    this.questions = this.get_all_questions();
+    this.get_all_questions();
   }
 
 }
