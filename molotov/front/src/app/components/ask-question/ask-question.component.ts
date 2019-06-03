@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionComponent } from '../question/question.component';
 import {Router} from "@angular/router";
 import Axios from 'axios';
-import { AppSettingsService } from 'src/app/app-settings.service';
+import { AppSettingsService } from '../../app-settings.service';
 
 const baseurl = 'http://localhost:3000/'
 const headers = {
@@ -67,7 +67,8 @@ export class AskQuestionComponent implements OnInit {
   }
 
   splitTags(tag: string) {
-    return tag.split(',');
+    var tags = tag.replace(/\s/g, '');
+    return tags.split(',');
   }
 
   //todo
