@@ -118,7 +118,7 @@ export class QuestionComponent implements OnInit {
   }
   submiteditquestion(question){
     console.log(this.editedquestiontags);
-    var arraytag = this.editedquestiontags.split(" ");
+    var arraytag = this.editedquestiontags.split(",");
     console.log(arraytag);
     Axios.patch(baseurl + 'questions/questions/' + question._id, {headers: headers, title: this.editedquestiontitle, text: this.editedquestiontext, tags: arraytag})
       .then((resp) => {

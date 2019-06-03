@@ -6,7 +6,7 @@
   "scripts": {
     "start": "molotov/bin/www & cd molotov/front/ ; npm start",
     "install": "cd molotov ; npm install ; cd front/ ; npm install; npm audit fix ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd molotov ; npm test"
   },
   "engines": {
     "node": "^11"

@@ -24,7 +24,7 @@ export class QuestionListComponent implements OnInit {
 
   search() {
     var tag_list = this.tags_text.split(',');
-    if(this.tags_text === ""){
+    if(this.tags_text == ""){
       return;
     }
     var aux = [];
@@ -35,7 +35,7 @@ export class QuestionListComponent implements OnInit {
       if(this.questions[j].tags){
         for(i in this.questions[j].tags){
             for(l in tag_list){
-                if(tag_list[l] === this.questions[j].tags[i]){
+                if(tag_list[l] == this.questions[j].tags[i]){
                   aux.push(this.questions[j]);
                   break;
                 }

@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
   }
   
   cancel() {
-    this.router.navigateByUrl('/questions');
+    this.router.navigateByUrl('/login');
   }
   
   ngOnInit() {

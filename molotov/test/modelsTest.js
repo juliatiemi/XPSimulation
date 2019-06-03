@@ -24,6 +24,27 @@ describe('Questions Model', function(){
         var question = Question(test);
         assert.equal("really?", question.text)
     });
+    it('Tags spliting', () => {
+        var text = "a ,b, c";
+        var expected = ["a", "b", "c"];
+        var question = Question();
+        var result = question.splitTags(text);
+        assert.equal(result[1], expected[1]);
+    });
+    it('Tag Filtering', () => {
+        var text = "a";
+        var question = [Question()];
+        question[0].addTag("b");
+        var result = question[0].filterTags(text, question);
+        assert.equal(0, result.length);
+    });
+    it('Null Tag Filtering', () => {
+        var text = "";
+        var question = [Question()];
+        question[0].addTag("b");
+        var result = question[0].filterTags(text, question);
+        assert.equal(1, result.length);
+    });
 });
 
 describe('Answers Model', function(){

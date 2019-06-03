@@ -44,10 +44,16 @@ export class AskQuestionComponent implements OnInit {
     .then((resp)=> {
         console.log('aqui');
         console.log(resp);
-        var tag_list = this.splitTags(this.tag);
+        var tag_list;
+        if (this.tag == ''){
+          tag_list = [];
+        }
+        else{
+          tag_list = this.splitTags(this.tag);
+        }
         console.log(tag_list);
         var createdQuestionId = resp.data.createdQuestion._id;
-        Axios.patch(baseurl + 'questions/tags/' + createdQuestionId + '/' + tag_list, {headers: headers})
+        Axios.patch(baseurl + 'questions/tags/' + createdQuestionId , {headers: headers, tags: tag_list})
           .then((resp)=> {
             console.log('aqui')
             console.log(resp)
@@ -73,9 +79,7 @@ export class AskQuestionComponent implements OnInit {
   //todo
   //check if it is edit or write
   ngOnInit() {
-    // if(!localStorage.getItem('username')) {
-    //   this.router.navigateByUrl('/login');
-    // }
+
   }
 
 }
