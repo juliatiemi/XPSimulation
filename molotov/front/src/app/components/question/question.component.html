@@ -2,6 +2,32 @@
   <div>
     <h1 class="page-title-font">{{question.title}}</h1>
     <h2 class="page-title-font">{{question.text}}</h2>
+    <div class="items-container">
+    <div class="item">
+    <ng-container *ngFor="let tag of tags">
+      <a style="color: yellow" (click)="selecttag(tag)">{{tag}}</a>
+      <span>&nbsp;&nbsp;&nbsp;</span>
+    </ng-container>
+    <div *ngIf="owner" class="button-container" style="display:block">
+      <span><button  style="position: absolute; right: 100px;" class="edit-button" (click)="editquestion()">Edit</button>   </span>
+    </div>
+    <div *ngIf="editing">
+    <br/>
+    <h5>Title</h5>
+    <textarea  style="margin: 10px"  wrap="soft" [(ngModel)]="editedquestiontitle"></textarea> 
+    <h5>Text</h5>
+    <textarea  style="margin: 10px"  wrap="soft" [(ngModel)]="editedquestiontext"></textarea>
+    <br/>
+    <h5>Tags</h5>
+    <textarea  style="margin: 10px"  wrap="soft" [(ngModel)]="editedquestiontags"></textarea>
+    <br/>
+    <span> <button  style="float: left"   class="edit-button" (click)="submiteditquestion(question)">Submit</button>   </span>
+    <span> <button  style="float: left"  class="edit-button" (click)="canceleditquestion()">Cancel</button>   </span>
+    <br/>
+    </div>
+    </div>
+    </div>
+    
     <h5 class="vote-system">
       <button class="voting-button" [ngClass]="{ 'voting-button-voted' : subQuestionButtonClicked, 'voting-button-not-voted' : !subQuestionButtonClicked }" (click)="downvoteQuestion(question)">-</button>
       {{question.points}}
