@@ -4,7 +4,7 @@
   "description": "Software Engineer class assignment where a group of 5 students were challenged to simulate a software development team operating under Extreme Programming principles, values and practices. We are using [Trello](https://trello.com/b/6JjKJzwO/molotov) as a project management tool.",
   "main": "index.js",
   "scripts": {
-    "start": ".molotov/bin/www & cd molotov/front/ ; npm start",
+    "start": "molotov/bin/www & cd molotov/front/ ; npm start",
     "install": "cd molotov ; npm install ; cd front/ ; npm install; npm audit fix ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
