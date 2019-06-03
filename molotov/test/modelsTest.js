@@ -4,7 +4,7 @@ var User = require('../models/users');
 var Question = require('../models/questions');
 var Answer = require('../models/answers');
 
-describe('Hash Password', function(){
+describe('User', function(){
     it('password encryption should work', function(){
         var password = 'senha123';
         var encrypted_password = User.hashPassword(password);
@@ -23,6 +23,20 @@ describe('Questions Model', function(){
         };
         var question = Question(test);
         assert.equal("really?", question.text)
+    });
+    it('Tags spliting', () => {
+        var text = "a ,b, c";
+        var expected = ["a", "b", "c"];
+        var question = Question();
+        var result = question.splitTags(text);
+        assert.equal(result[1], expected[1]);
+    });
+    it('Tag Filtering', () => {
+        var text = "a";
+        var question = [Question()];
+        question[0].addTag("b");
+        var result = question[0].filterTags(text, question);
+        assert.equal(1, result.length);
     });
 });
 

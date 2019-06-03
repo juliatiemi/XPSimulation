@@ -22,11 +22,12 @@ export class QuestionListComponent implements OnInit {
   tags_text = "";
 
   search() {
+    this.get_all_questions();
     if (this.tags_text == ""){
-      this.get_all_questions();
       return;
     }
-    var tag_list = this.tags_text.split(',');
+    var clear_tags = this.tags_text.replace(/\s/g, '');
+    var tag_list = clear_tags.split(',');
     var i, j;
     var quest;
     var tag;
