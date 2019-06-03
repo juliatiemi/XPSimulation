@@ -94,6 +94,27 @@ router.patch('/updateVote/:questionID', function(req, res, next) {
     });
 });
 
+//update voting
+router.patch('/questions/:questionID', function(req, res, next) {
+  var id = req.params.questionID;
+  var title = req.body.title;
+  var text = req.body.text;
+  var tags = req.body.tags;
+  console.log(id);
+  console.log(text);
+  console.log(title);
+  Question.update({_id: id}, {$set: {title: title, text: text, tags: tags}})
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error:err })
+    });
+});
+
 //delete by questionid
 router.delete('/questions/:questionID', function(req, res, next) {
   var id = req.params.questionID;
